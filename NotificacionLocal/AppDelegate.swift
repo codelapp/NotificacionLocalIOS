@@ -1,13 +1,5 @@
-//
-//  AppDelegate.swift
-//  NotificacionLocal
-//
-//  Created by Jorge Maldonado Borbón on 09/01/18.
-//  Copyright © 2018 Jorge Maldonado Borbón. All rights reserved.
-//
-
 import UIKit
-
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,7 +7,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (aceptar, error) in
+            if !aceptar {
+                print("no hay permiso del usuario")
+            }
+        }
+    
+        
         return true
     }
 
